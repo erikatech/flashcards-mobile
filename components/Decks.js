@@ -8,6 +8,9 @@ import { receiveDecks, selectDeck } from '../actions';
 
 class Decks extends Component {
 
+  /**
+   * adapted from https://itnext.io/handle-tab-changes-in-react-navigation-3717180cddb
+   */
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
     return {
