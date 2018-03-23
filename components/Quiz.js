@@ -63,7 +63,7 @@ class Quiz extends Component {
     const { score, currentPosition, showned } = this.state;
     if(!this.hasFinishedQuiz()){
       this.setState({
-        score: correct ? score + 1 : ((score - 1 < 0) ? 0 : score - 1),
+        score: correct ? score + 1 : score,
         showned: showned + 1,
         currentPosition: currentPosition + 1,
         currentCardOption: 'QUESTION',
