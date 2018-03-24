@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { submitDeck } from '../utils/api';
-import { addDeck } from '../actions';
+import { addDeck, selectDeck } from '../actions';
+import { connect } from 'react-redux';
 
 const styles = {
   container: {
@@ -49,7 +50,13 @@ class NewDeck extends Component {
       this.setState({ errorMessage: 'The field is required' })
       return;
     } 
-    submitDeck(this.state.title).then(() => {this.setState({title: '', errorMessage: ''})});
+    submitDeck(this.state.title).then((deck) => {
+      this.setState({title: ''})
+      this.props.dispatch(selectDeck(deck))
+      this.props.navigation.navigate(
+        'DeckDetail', {title: deck.title}
+      )
+    });
   }
 
   render() {
@@ -68,4 +75,4 @@ class NewDeck extends Component {
   }
 }
 
-export default NewDeck;
+export default connect()(NewDeck);
