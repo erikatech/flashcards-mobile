@@ -71,6 +71,19 @@ class Quiz extends Component {
     }
   }
 
+  restartQuiz = () => {
+    this.setState({
+      currentPosition: 0,
+      currentCardOption: 'QUESTION',
+      showned: 1,
+      score: 0,
+    })
+  }
+
+  backToDeck = () => {
+    this.props.navigation.goBack();
+  }
+
   hasFinishedQuiz = () => {
     return this.state.currentPosition === this.props.deck.cards.length;
   };
@@ -81,7 +94,12 @@ class Quiz extends Component {
     const currentCard = deck.cards[currentPosition];
 
     return this.hasFinishedQuiz() ? 
-      <Results score={this.state.score} /> :
+      <Results 
+        score={this.state.score} 
+        cardsTotal={deck.cards.length} 
+        restartQuiz={this.restartQuiz}
+        backToDeck={this.backToDeck}
+      /> :
 
       <View style={styles.mainContainer}>
         <View style={{flex: 1}}>
