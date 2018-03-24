@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
   deckContainer: {
@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
 
 
 const Deck = ({ deck, selectDeck }) => (
-  <TouchableHighlight onPress={() => selectDeck(deck)} style={styles.deckContainer}>
+  <TouchableOpacity onPress={() => selectDeck(deck)} style={styles.deckContainer}>
     <View>
       <Text style={styles.deckTitle}>{deck.title}</Text>
       <Text style={styles.cards}>{deck.cards.length} card{deck.cards.length === 1 ? '' : 's'}</Text>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 );
 
 export default Deck;
